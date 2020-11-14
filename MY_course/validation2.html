@@ -1,0 +1,134 @@
+<html>
+<head>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+<script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+</head>
+<title></title>
+<body>	
+<div class="row">
+														<div class="col-md-2">
+															<div class="form-group">
+																<span class="form-label">Adults</span>
+																<select class="form-control" id="element" onchange="Traveller" >
+																<option>0</option>
+																<option>1</option>
+																<option>2</option>
+																<option>3</option>
+																<option>4</option>
+																<option>5</option>
+																<option>6</option>
+																<option>7</option>
+																<option>8</option>
+																<option>9</option>
+																</select>
+																<span class="select-arrow"></span>
+															</div>
+														</div>
+														<div class="col-md-2">
+															<div class="form-group">
+																<span class="form-label">Child</span>
+																<select class="form-control" id="element1"  onchange="Traveller">
+																<option>0</option>
+																<option>1</option>
+																<option>2</option>
+																<option>3</option>
+																<option>4</option>
+																<option>5</option>
+																<option>6</option>
+																<option>7</option>
+																<option>8</option>
+																<option>9</option>
+																</select> 
+																
+																<span class="select-arrow"></span>
+															</div>
+														</div>
+														<div class="col-md-2">
+															<div class="form-group">
+																<span class="form-label">Infants</span>
+																<select class="form-control" id="element2" onchange="Traveller" >
+																<option>0</option>
+																<option>1</option>
+																<option>2</option>
+																<option>3</option>
+																<option>4</option>
+																<option>5</option>
+																<option>6</option>
+																<option>7</option>
+																<option>8</option>
+																<option>9</option>
+																</select>
+																
+																<span class="select-arrow"></span>
+															</div>
+															<p id="warning" class="label"></p>
+														</div> 
+														
+													</div>
+													
+									<input type="submit" id ="submit" value="submit">
+													<label id ="result"/>
+													
+									<script>
+									
+			$('#element').change(function () {
+              validateTeam('openSelect');
+          });
+          $('#element1').change(function () {
+              validateTeam('openSelect');
+          });
+          $('#element2').change(function () {
+              validateTeam('openSelect');
+          });
+
+          function validateTeam(section) {
+              //array for storing selected nationalities:
+              var $selectionArr = [];
+
+              $('#' + section + '> .form-group select').each(function () {
+
+                  //strip the selected text:
+                  var $optText = $(this).find('option:selected').text().substr(0, 3);
+
+                  if ($optText.length == 3) {
+                      $selectionArr.push($optText);
+                  }
+              });
+
+              //unique array of nationalities:
+              var result = [];
+
+              $.each($selectionArr, function (index, value) {
+                  if ($.inArray(value, result) == -1) {
+                      result.push(value);
+                      
+                      if (result.length == 5) {
+                          $('#warning').removeClass('label-danger').addClass('label-success').text('Thank you - your selection is valid!');
+                      } else {
+                          $('#warning').text('');
+                      }
+
+                  } else {
+                      //console.log(value);
+                      $('#warning').addClass('label-danger').text('Warning! You have selected more than one players from the same nation (' + value + ')');
+                  }
+              });
+          };	
+									
+									
+									
+</script>									
+													
+													
+													
+													
+													
+													
+													
+													
+													
+			</body>	
+</html>
